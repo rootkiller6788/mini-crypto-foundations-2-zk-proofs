@@ -1,0 +1,35 @@
+
+path = 'F:/nano-everything/mini-theory-of-computation/11. mini-crypto-foundations-2-zk-proofs/mini-gmw-graph-3coloring-zk/src/GMW.lean'
+
+lines = []
+lines.append('/-')
+lines.append(' * GMW.lean - GMW Graph 3-Coloring ZK Proof: Lean 4 Formalization')
+lines.append(' -/')
+lines.append('')
+lines.append('abbrev Vertex := Nat')
+lines.append('')
+lines.append('inductive Color where')
+lines.append('  | red   : Color')
+lines.append('  | green : Color')
+lines.append('  | blue  : Color')
+lines.append('deriving DecidableEq, Repr')
+lines.append('')
+lines.append('structure Graph where')
+lines.append('  n_vertices : Nat')
+lines.append('  adj        : Nat -> Nat -> Bool')
+lines.append('  n_edges    : Nat')
+lines.append('')
+lines.append('structure Coloring where')
+lines.append('  n_vertices : Nat')
+lines.append('  colors     : Nat -> Color')
+lines.append('')
+lines.append('def is_proper_coloring (g : Graph) (c : Coloring) : Prop :=')
+lines.append('  forall i j, i < g.n_vertices -> j < g.n_vertices ->')
+lines.append('    g.adj i j = true -> c.colors i != c.colors j')
+lines.append('')
+lines.append('def is_3colorable (g : Graph) : Prop :=')
+lines.append('  exists c : Coloring, is_proper_coloring g c')
+
+with open(path, 'w', encoding='utf-8') as f:
+    f.write(chr(10).join(lines))
+print('OK')
